@@ -15,4 +15,5 @@ class ProductDetailViewModel: ObservableObject {
     init(product: ProductModel) {
         self.product = product
     }
+    
 }

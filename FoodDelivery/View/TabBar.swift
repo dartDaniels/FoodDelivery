@@ -8,6 +8,7 @@
 import SwiftUI
 struct TabBar: View {
     @State private var selectedTab = 0
+    var viewModel: MainTabBarViewModel
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -18,7 +19,7 @@ struct TabBar: View {
                         Text("Catalog")
                     }
                 }.tag(0)
-            CartView()
+            CartView(viewModel: CartViewModel.shared)
                 .tabItem {
                 VStack {
                     Image(selectedTab == 1 ? "CartButtonActive" : "Cart")
@@ -36,6 +37,4 @@ struct TabBar: View {
     }
 }
 
-#Preview {
-    TabBar()
-}
+

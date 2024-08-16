@@ -11,7 +11,7 @@ struct AuthView: View {
     
     @State private var isRegistrated = true
     
-    @State private var phoneNumber = ""
+    @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var passIsEmpty = false
@@ -29,9 +29,9 @@ struct AuthView: View {
                 .cornerRadius(30.0)
             
             VStack {
-                TextField("Enter phone number", text: $phoneNumber)
+                TextField("Enter your email", text: $email)
                     .padding()
-                    .background(phoneNumber == "" ? Color("PrimaryGray") : Color("ButtonPurple"))
+                    .background(email == "" ? Color("PrimaryGray") : Color("ButtonPurple"))
                     .cornerRadius(12)
                     .padding()
                     .textContentType(.oneTimeCode)
@@ -46,7 +46,7 @@ struct AuthView: View {
             if !isRegistrated {
                 SecureField("Repeat password", text: $confirmPassword)
                     .padding()
-                    .background(confirmPassword == "" ? Color("PrimaryGray") : Color("ButtonPurple"))
+                    .background(confirmPassword == password ? Color("PrimaryGray") : Color("ButtonPurple"))
                     .cornerRadius(12)
                     .padding()
                     .textContentType(.oneTimeCode)
@@ -58,20 +58,43 @@ struct AuthView: View {
                 if password.isEmpty {
                     passIsEmpty = true
                 }
-                if isRegistrated && !password.isEmpty {
-                    isTabViewEnable.toggle()
+                if isRegistrated {
+                    AuthService.shared.signIn(email: email,
+                                              password: password) { result in
+                        switch result {
+                            
+                        case .success(_):
+                            isTabViewEnable.toggle()
+                        case .failure(let error):
+                            print("something goes wrong: \(error.localizedDescription)")
+                        }
+                    }
+                    
                 } else {
-                    self.phoneNumber = ""
-                    self.password = ""
-                    self.confirmPassword = ""
-                    self.isRegistrated.toggle()
+                    
+                    AuthService.shared.signUp(email: self.email,
+                                              password: self.password) { result in
+                        switch result {
+                            
+                        case .success(_):
+                            print("You are registrated!")
+                            self.email = ""
+                            self.password = ""
+                            self.confirmPassword = ""
+                            self.isRegistrated.toggle()
+                        case .failure(let error):
+                            print("Error\(error.localizedDescription)")
+                        }
+                    }
+                    
+                    
                 }
             }
         label: {
             Text(isRegistrated ? "Enter" : "Create account")
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(phoneNumber == "" || password == "" ?
+                    .background(email == "" || password == "" ?
                                 Color("PrimaryGray") :
                                 Color("ButtonPurple"))
                     .cornerRadius(12)
@@ -80,7 +103,7 @@ struct AuthView: View {
                     .font(.title3.bold())
             }.alert("Please, enter your password", isPresented: $passIsEmpty) {
                 Text("OK")
-            }.disabled(password == "" || phoneNumber == "" ? isButtonDisabled == true : isButtonDisabled == false)
+            }.disabled(password == "" || email == "" ? isButtonDisabled == true : isButtonDisabled == false)
             
             Button(action: {
                 isRegistrated.toggle()
@@ -100,7 +123,9 @@ struct AuthView: View {
         .background(Color("BGPurple"))
         .animation(Animation.easeInOut(duration: 0.5), value: isRegistrated)
         .fullScreenCover(isPresented: $isTabViewEnable, content: {
-            TabBar()
+            let tabBarViewModel = MainTabBarViewModel(user: AuthService.shared.currentUser!)
+            
+            TabBar(viewModel: tabBarViewModel)
         })
     }
 }
