@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-class MainTabBarViewModel: ObservableObject {
+class TabBarViewModel: ObservableObject {
     
     @Published var user: User
     

@@ -17,7 +17,11 @@ struct FoodDeliveryApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            if let user = AuthService.shared.currentUser {
+                TabBar(viewModel: TabBarViewModel(user: user))
+            } else {
+                AuthView()
+            }
         }
     }
     

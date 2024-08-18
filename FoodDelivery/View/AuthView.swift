@@ -17,6 +17,7 @@ struct AuthView: View {
     @State private var passIsEmpty = false
     @State private var isTabViewEnable = false
     @State private var isButtonDisabled = true
+    @State private var showAuthAlert = false
     
     
     var body: some View {
@@ -66,6 +67,7 @@ struct AuthView: View {
                         case .success(_):
                             isTabViewEnable.toggle()
                         case .failure(let error):
+                            showAuthAlert.toggle()
                             print("something goes wrong: \(error.localizedDescription)")
                         }
                     }
@@ -86,8 +88,6 @@ struct AuthView: View {
                             print("Error\(error.localizedDescription)")
                         }
                     }
-                    
-                    
                 }
             }
         label: {
@@ -101,9 +101,9 @@ struct AuthView: View {
                     .padding()
                     .accentColor(.black)
                     .font(.title3.bold())
-            }.alert("Please, enter your password", isPresented: $passIsEmpty) {
-                Text("OK")
-            }.disabled(password == "" || email == "" ? isButtonDisabled == true : isButtonDisabled == false)
+            }.alert("Wrong email or password", isPresented: $showAuthAlert) {
+                Text("Okey")
+            }
             
             Button(action: {
                 isRegistrated.toggle()
@@ -120,10 +120,10 @@ struct AuthView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .background(Image("FdBackground").resizable().ignoresSafeArea())
-        .background(Color("BGPurple"))
+        .background(Color.secondaryGreen)
         .animation(Animation.easeInOut(duration: 0.5), value: isRegistrated)
         .fullScreenCover(isPresented: $isTabViewEnable, content: {
-            let tabBarViewModel = MainTabBarViewModel(user: AuthService.shared.currentUser!)
+            let tabBarViewModel = TabBarViewModel(user: AuthService.shared.currentUser!)
             
             TabBar(viewModel: tabBarViewModel)
         })

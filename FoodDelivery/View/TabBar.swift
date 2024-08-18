@@ -8,7 +8,7 @@
 import SwiftUI
 struct TabBar: View {
     @State private var selectedTab = 0
-    var viewModel: MainTabBarViewModel
+    var viewModel: TabBarViewModel
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -26,7 +26,7 @@ struct TabBar: View {
                     Text("Cart")
                 }
                 }.tag(1)
-            ProfileView()
+            ProfileView(viewModel: ProfileViewModel(profile: ProfileModel(id: "", name: "", phoneNumber: 0, adress: "")))
                 .tabItem {
                 VStack {
                     Image("Profile")

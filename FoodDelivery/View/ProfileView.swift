@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var name = "Daniel"
-    @State private var phoneNumber = "+7(913)6254090"
-    @State private var adress = "Russia, Omsk, Lermontova, 136, 188, 644001"
+    @StateObject var viewModel: ProfileViewModel
     @State private var isSignedIn = false
     var body: some View {
-        
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(name)
+                    TextField("Name", text: $viewModel.profile.name)
                         .font(.system(size: 24))
                         .bold()
-                    Text(phoneNumber)
-                        .font(.system(size: 16))
+                    HStack {
+                        Text("+7 (913)")
+                            .font(.system(size: 16))
+                        TextField("Phone number", value: $viewModel.profile.phoneNumber, format: .number)
+                            .font(.system(size: 16))
+                    }
+                        
                 }
                 
                 Spacer()
@@ -38,10 +40,15 @@ struct ProfileView: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Delivery adress: ").font(.system(size: 24))
-                    Text(adress).font(.system(size: 16))
-                        .padding(.bottom, 16)
-                    
+                    VStack(alignment: .leading) {
+                        Text("Delivery adress: ").font(.system(size: 24))
+                            .padding(.leading, 16)
+                        TextField("Delivery adress", text: $viewModel.profile.adress)
+                            .font(.system(size: 16))
+                            .bold().font(.system(size: 16))
+                            .padding(.bottom, 16)
+                            .padding(.leading, 16)
+                    }
                 }.padding(.trailing, 30)
 
             }
@@ -51,6 +58,12 @@ struct ProfileView: View {
                 }, label: "Sign Out")
             }
             Spacer()
+        }.onSubmit {
+            viewModel.setProfile()
+        }
+        
+        .onAppear {
+            self.viewModel.getProfile()
         }
         
         
@@ -58,5 +71,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(viewModel: ProfileViewModel(profile: ProfileModel(id: "", name: "Daniel", phoneNumber: 6254090, adress: "Russia, Omsk, Lermontova, 136, 188, 644001")))
 }

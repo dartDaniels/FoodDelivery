@@ -21,7 +21,7 @@
 		649EE2FA2C6FE86D003125FF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 649EE2F92C6FE86D003125FF /* FirebaseFirestore */; };
 		649EE2FC2C6FE86D003125FF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 649EE2FB2C6FE86D003125FF /* FirebaseStorage */; };
 		649EE2FE2C6FEC91003125FF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EE2FD2C6FEC91003125FF /* AuthService.swift */; };
-		649EE3012C6FF854003125FF /* MainTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EE3002C6FF854003125FF /* MainTabBarViewModel.swift */; };
+		649EE3012C6FF854003125FF /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649EE3002C6FF854003125FF /* TabBarViewModel.swift */; };
 		64BA18EE2C485FDF007D0FE8 /* FoodDeliveryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA18ED2C485FDF007D0FE8 /* FoodDeliveryApp.swift */; };
 		64BA18F22C485FE1007D0FE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64BA18F12C485FE1007D0FE8 /* Assets.xcassets */; };
 		64BA18F52C485FE1007D0FE8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64BA18F42C485FE1007D0FE8 /* Preview Assets.xcassets */; };
@@ -30,6 +30,9 @@
 		64CD12872C52D2E0002C8314 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD12862C52D2E0002C8314 /* ProfileView.swift */; };
 		64CD128D2C52E894002C8314 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BA18EF2C485FDF007D0FE8 /* AuthView.swift */; };
 		64CD128E2C52EAA4002C8314 /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD12822C52D2A4002C8314 /* CatalogView.swift */; };
+		64D322C92C728A4F00860D38 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D322C82C728A4F00860D38 /* ProfileModel.swift */; };
+		64D322CB2C728B9A00860D38 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D322CA2C728B9A00860D38 /* DatabaseService.swift */; };
+		64D322CD2C729C2300860D38 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D322CC2C729C2300860D38 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +47,7 @@
 		649EE2F22C6E9AB9003125FF /* PositionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCell.swift; sourceTree = "<group>"; };
 		649EE2F42C6FE457003125FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		649EE2FD2C6FEC91003125FF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		649EE3002C6FF854003125FF /* MainTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewModel.swift; sourceTree = "<group>"; };
+		649EE3002C6FF854003125FF /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		64BA18EA2C485FDF007D0FE8 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64BA18ED2C485FDF007D0FE8 /* FoodDeliveryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDeliveryApp.swift; sourceTree = "<group>"; };
 		64BA18EF2C485FDF007D0FE8 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -54,6 +57,9 @@
 		64CD12822C52D2A4002C8314 /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		64CD12842C52D2D3002C8314 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		64CD12862C52D2E0002C8314 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		64D322C82C728A4F00860D38 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		64D322CA2C728B9A00860D38 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		64D322CC2C729C2300860D38 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			children = (
 				642F68B82C52EE52002C65B8 /* ProductModel.swift */,
 				649EE2F02C6E97AE003125FF /* OrderModel.swift */,
+				64D322C82C728A4F00860D38 /* ProfileModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,7 +102,8 @@
 				642F68BE2C52F8CB002C65B8 /* CatalogViewModel.swift */,
 				641A93292C56D4E90091A4A6 /* ProductDetailViewModel.swift */,
 				649EE2EE2C6E971B003125FF /* CartViewModel.swift */,
-				649EE3002C6FF854003125FF /* MainTabBarViewModel.swift */,
+				649EE3002C6FF854003125FF /* TabBarViewModel.swift */,
+				64D322CC2C729C2300860D38 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -104,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				649EE2FD2C6FEC91003125FF /* AuthService.swift */,
+				64D322CA2C728B9A00860D38 /* DatabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -245,18 +254,21 @@
 				64CD128E2C52EAA4002C8314 /* CatalogView.swift in Sources */,
 				649EE2EF2C6E971B003125FF /* CartViewModel.swift in Sources */,
 				649EE2F32C6E9AB9003125FF /* PositionCell.swift in Sources */,
+				64D322CB2C728B9A00860D38 /* DatabaseService.swift in Sources */,
 				64CD12852C52D2D3002C8314 /* CartView.swift in Sources */,
 				64CD12812C52CB5E002C8314 /* TabBar.swift in Sources */,
 				641A932A2C56D4E90091A4A6 /* ProductDetailViewModel.swift in Sources */,
 				64CD12872C52D2E0002C8314 /* ProfileView.swift in Sources */,
+				64D322C92C728A4F00860D38 /* ProfileModel.swift in Sources */,
 				642F68BC2C52EFC3002C65B8 /* ProductCell.swift in Sources */,
 				64251D102C696D1000770FC9 /* CustomButton.swift in Sources */,
 				649EE2F12C6E97AE003125FF /* OrderModel.swift in Sources */,
+				64D322CD2C729C2300860D38 /* ProfileViewModel.swift in Sources */,
 				642F68B92C52EE52002C65B8 /* ProductModel.swift in Sources */,
 				64BA18EE2C485FDF007D0FE8 /* FoodDeliveryApp.swift in Sources */,
 				642F68BF2C52F8CB002C65B8 /* CatalogViewModel.swift in Sources */,
 				649EE2FE2C6FEC91003125FF /* AuthService.swift in Sources */,
-				649EE3012C6FF854003125FF /* MainTabBarViewModel.swift in Sources */,
+				649EE3012C6FF854003125FF /* TabBarViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
