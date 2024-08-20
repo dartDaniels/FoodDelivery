@@ -124,7 +124,6 @@ struct AuthView: View {
         .animation(Animation.easeInOut(duration: 0.5), value: isRegistrated)
         .fullScreenCover(isPresented: $isTabViewEnable, content: {
             let tabBarViewModel = TabBarViewModel(user: AuthService.shared.currentUser!)
-            
             TabBar(viewModel: tabBarViewModel)
         })
     }
