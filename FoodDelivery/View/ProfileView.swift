@@ -52,18 +52,34 @@ struct ProfileView: View {
                 }.padding(.trailing, 30)
 
             }
+            List {
+                if viewModel.orders.count == 0 {
+                    Text("Here you can check your orders")
+                } else {
+                    ForEach(viewModel.orders, id: \.id) { order in
+                        OrderCell(order: order)
+                    }
+                }
+            }
             VStack {
                 CustomButton(action: {
+                    AuthService.shared.signOut()
                     isSignedIn.toggle()
                 }, label: "Sign Out")
             }
             Spacer()
-        }.onSubmit {
+        }.fullScreenCover(isPresented: $isSignedIn, content: {
+            withAnimation() {
+                AuthView()
+            }
+        })
+        .onSubmit {
             viewModel.setProfile()
         }
         
         .onAppear {
             self.viewModel.getProfile()
+            viewModel.getOrders()
         }
         
         

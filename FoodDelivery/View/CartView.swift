@@ -40,7 +40,22 @@ struct CartView: View {
                     print("canceled")
                 }, label: "REMOVE ORDER")
                 CustomButton(action: {
-                    print("GO TO PAY")
+                    guard let user = AuthService.shared.currentUser else {
+                        print("User is not authenticated")
+                        return
+                    }
+                    var order = DeliveryModel(userID: AuthService.shared.currentUser!.uid, date: Date(), status: StatusModel.completed.rawValue)
+                    order.positions = self.viewModel.cart
+                    
+                    DatabaseService.shared.makeOrder(order: order) { result in
+                        switch result {
+                            
+                        case .success(let order):
+                            print(order.amount)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
                 }, label: "ORDER NOW")
             }
 
